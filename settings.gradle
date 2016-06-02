@@ -1,1 +1,1 @@
-include ':app', ':retrofit', ':font'
+include ':app', ':retrofit', ':font', ':deeplink'
