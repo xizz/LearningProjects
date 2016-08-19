@@ -1,12 +1,12 @@
 package com.xi_zz.vectorimage;
 
-import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
-public class Appication extends Application {
+public class Application extends android.app.Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		// vectorDrawables.useSupportLibrary = true
 		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 	}
 }
