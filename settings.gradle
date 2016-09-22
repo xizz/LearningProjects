@@ -1,1 +1,1 @@
-include ':app', ':retrofit', ':font', ':deeplink', ':palette', ':vectorimage'
+include ':app', ':retrofit', ':font', ':deeplink', ':palette', ':vectorimage', ':fragmentbackpress'
