@@ -3,10 +3,6 @@
   <component name="ProjectCodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
       <value>
-        <option name="FIELD_NAME_SUFFIX" value="m" />
-        <option name="STATIC_FIELD_NAME_SUFFIX" value="s" />
-        <option name="GENERATE_FINAL_LOCALS" value="true" />
-        <option name="GENERATE_FINAL_PARAMETERS" value="true" />
         <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
         <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
         <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
@@ -34,6 +30,8 @@
             <emptyLine />
           </value>
         </option>
+        <option name="STATIC_METHODS_ORDER_WEIGHT" value="5" />
+        <option name="METHODS_ORDER_WEIGHT" value="4" />
         <option name="RIGHT_MARGIN" value="100" />
         <AndroidXmlCodeStyleSettings>
           <option name="USE_CUSTOM_SETTINGS" value="true" />
@@ -85,6 +83,13 @@
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
         </XML>
         <codeStyleSettings language="JAVA">
+          <option name="BRACE_STYLE" value="2" />
+          <option name="CLASS_BRACE_STYLE" value="2" />
+          <option name="METHOD_BRACE_STYLE" value="2" />
+          <option name="ELSE_ON_NEW_LINE" value="true" />
+          <option name="CATCH_ON_NEW_LINE" value="true" />
+          <option name="FINALLY_ON_NEW_LINE" value="true" />
+          <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
           <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
           <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
           <option name="KEEP_SIMPLE_CLASSES_IN_ONE_LINE" value="true" />
