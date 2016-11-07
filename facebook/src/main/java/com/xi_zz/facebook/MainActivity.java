@@ -10,11 +10,16 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity
 		accessToken = AccessToken.getCurrentAccessToken();
 		profile = Profile.getCurrentProfile();
 
-		loginButton.setReadPermissions("email");
+		loginButton.setReadPermissions("public_profile", "email", "user_birthday", "user_friends");
 		loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
 		{
 			@Override
@@ -74,19 +79,35 @@ public class MainActivity extends AppCompatActivity
 
 	private void setDisplay()
 	{
-		if (accessToken == null || profile == null)
+		GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback()
 		{
-			displayText.setText("You are not logged in");
-		}
-		else
-		{
-			StringBuilder text = new StringBuilder();
-			text.append(accessToken.getApplicationId() + "\n");
-			text.append(accessToken.getUserId() + "\n");
-			text.append(accessToken.getToken() + "\n");
-			text.append(profile.getName() + "\n");
-			displayText.setText(text);
-		}
+			@Override
+			public void onCompleted(JSONObject object, GraphResponse response)
+			{
+				StringBuilder text = new StringBuilder();
+				try
+				{
+					text.append(object.getString("name") + "\n");
+					text.append(object.getString("id") + "\n");
+					text.append(object.getString("email") + "\n");
+					text.append(object.getString("gender") + "\n");
+					text.append(object.getString("birthday") + "\n");
+					text.append(profile.getLinkUri() + "\n");
+				}
+				catch (JSONException e)
+				{
+					e.printStackTrace();
+				}
+				displayText.setText(text);
+
+			}
+		});
+		Bundle args = new Bundle();
+		args.putString("fields", "id,name,email,gender,birthday");
+		request.setParameters(args);
+		request.executeAsync();
+
+
 	}
 
 	@Override
