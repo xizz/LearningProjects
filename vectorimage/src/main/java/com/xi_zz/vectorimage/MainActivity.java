@@ -28,17 +28,20 @@ public class MainActivity extends AppCompatActivity {
 		imageView.setImageDrawable(drawable);
 
 		// vectorDrawables.useSupportLibrary = true
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			vectorDrawable = (VectorDrawable) drawable;
-		} else {
-			vectorDrawableCompat = (VectorDrawableCompat) drawable;
-		}
-
-		// vectorDrawables.useSupportLibrary = false
 //		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //			vectorDrawable = (VectorDrawable) drawable;
 //		} else {
-//			bitmapDrawable = (BitmapDrawable) drawable;
+//			vectorDrawableCompat = (VectorDrawableCompat) drawable;
 //		}
+
+		// vectorDrawables.useSupportLibrary = false
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		{
+			vectorDrawable = (VectorDrawable) drawable;
+		}
+		else
+		{
+			bitmapDrawable = (BitmapDrawable) drawable;
+		}
 	}
 }
