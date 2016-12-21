@@ -12,7 +12,8 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		TextView textView = (TextView) findViewById(R.id.url);
-
 		textView.setText(getIntent().getDataString());
+
+		getSupportActionBar().setTitle("MainActivity");
 	}
 }
