@@ -10,11 +10,10 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		>
-		<activity
-			android:name=".MainActivity"
-			>
+		<activity android:name=".MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
+
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
@@ -22,21 +21,95 @@
 			android:name=".StandardActivity"
 			android:launchMode="standard"
 			>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<!-- For implicit calls -->
+				<category android:name="android.intent.category.DEFAULT"/>
+				<!-- For it to work inside a browser -->
+				<category android:name="android.intent.category.BROWSABLE"/>
+
+				<data
+					android:host="xi-zz.com"
+					android:pathPrefix="/standard"
+					android:scheme="http"
+					/>
+			</intent-filter>
 		</activity>
 		<activity
 			android:name=".SingleTopActivity"
 			android:launchMode="singleTop"
 			>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<!-- For implicit calls -->
+				<category android:name="android.intent.category.DEFAULT"/>
+				<!-- For it to work inside a browser -->
+				<category android:name="android.intent.category.BROWSABLE"/>
+
+				<data
+					android:host="xi-zz.com"
+					android:pathPrefix="/singleTop"
+					android:scheme="http"
+					/>
+			</intent-filter>
 		</activity>
 		<activity
 			android:name=".SingleTaskActivity"
 			android:launchMode="singleTask"
 			>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<!-- For implicit calls -->
+				<category android:name="android.intent.category.DEFAULT"/>
+				<!-- For it to work inside a browser -->
+				<category android:name="android.intent.category.BROWSABLE"/>
+
+				<data
+					android:host="xi-zz.com"
+					android:pathPrefix="/singleTask"
+					android:scheme="http"
+					/>
+			</intent-filter>
 		</activity>
+
+		<!-- taskAffinity help you visualize the activity in recent app view -->
 		<activity
 			android:name=".SingleInstanceActivity"
 			android:launchMode="singleInstance"
+			android:taskAffinity=""
 			>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<!-- For implicit calls -->
+				<category android:name="android.intent.category.DEFAULT"/>
+				<!-- For it to work inside a browser -->
+				<category android:name="android.intent.category.BROWSABLE"/>
+
+				<data
+					android:host="xi-zz.com"
+					android:pathPrefix="/singleInstance"
+					android:scheme="http"
+					/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".SingleInstanceActivity2"
+			android:launchMode="singleInstance"
+			android:taskAffinity=""
+			>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<!-- For implicit calls -->
+				<category android:name="android.intent.category.DEFAULT"/>
+				<!-- For it to work inside a browser -->
+				<category android:name="android.intent.category.BROWSABLE"/>
+
+				<data
+					android:host="xi-zz.com"
+					android:pathPrefix="/single2Instance"
+					android:scheme="http"
+					/>
+			</intent-filter>
 		</activity>
 	</application>
 

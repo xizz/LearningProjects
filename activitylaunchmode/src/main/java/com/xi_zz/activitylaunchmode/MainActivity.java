@@ -49,4 +49,11 @@ public class MainActivity extends AppCompatActivity
 		intent.putExtra(KEY_LEVEL, level + 1);
 		startActivity(intent);
 	}
+
+	public void launchSingleInstance2(View view)
+	{
+		Intent intent = new Intent(this, SingleInstanceActivity2.class);
+		intent.putExtra(KEY_LEVEL, level + 1);
+		startActivity(intent);
+	}
 }

@@ -18,8 +18,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:textSize="20dp"
 		android:text="Pick One"
+		android:textSize="20dp"
 		/>
 
 	<Button
@@ -27,8 +27,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:text="Standard"
 		android:onClick="launchStandard"
+		android:text="Standard"
 		/>
 
 	<Button
@@ -36,8 +36,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:text="Single Top"
 		android:onClick="launchSingleTop"
+		android:text="Single Top"
 		/>
 
 	<Button
@@ -45,8 +45,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:text="Single Task"
 		android:onClick="launchSingleTask"
+		android:text="Single Task"
 		/>
 
 	<Button
@@ -54,7 +54,16 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:text="Single Instance"
 		android:onClick="launchSingleInstance"
+		android:text="Single Instance"
+		/>
+
+	<Button
+		android:id="@+id/button5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:onClick="launchSingleInstance2"
+		android:text="Single Instance 2"
 		/>
 </LinearLayout>
