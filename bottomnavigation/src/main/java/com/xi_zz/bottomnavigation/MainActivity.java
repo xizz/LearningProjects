@@ -14,5 +14,6 @@ public class MainActivity extends AppCompatActivity
 
 		BottomNavigationView view = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 		Util.removeShiftMode(view);
+		view.setSaveEnabled(true);
 	}
 }
