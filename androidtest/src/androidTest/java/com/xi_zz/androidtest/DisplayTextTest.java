@@ -22,6 +22,7 @@ public class DisplayTextTest
 	@Test
 	public void testTextShowAfterButtonClick()
 	{
+		onView(withId(R.id.display_text)).check(matches(withText("")));
 		onView(withId(R.id.show_button)).perform(click());
 		onView(withId(R.id.display_text)).check(matches(withText(R.string.hello_world)));
 	}

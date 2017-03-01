@@ -11,7 +11,8 @@ android {
 		versionCode 1
 		versionName "1.0"
 
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		// testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		testInstrumentationRunner 'com.xi_zz.androidtest.TestRunner'
 
 	}
 	buildTypes {
@@ -29,8 +30,7 @@ dependencies {
 
 	testCompile 'junit:junit:4.12'
 
-	androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-		exclude group: 'com.android.support', module: 'support-annotations'
-	})
-
+	androidTestCompile 'com.android.support:support-annotations:25.2.0'
+	androidTestCompile 'com.android.support.test:runner:0.5'
+	androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }
