@@ -1,3 +1,5 @@
 <resources>
 	<string name="app_name">Android Test</string>
+	<string name="show">Show</string>
+	<string name="hello_world">Hello World!</string>
 </resources>
