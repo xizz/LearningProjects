@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 25
-	buildToolsVersion "24.0.3"
+	compileSdkVersion SdkVersion
+	buildToolsVersion "$BuildToolsVersion"
+
 
 	defaultConfig {
 		applicationId "com.xi_zz.bottomnavigation"
 		minSdkVersion 16
-		targetSdkVersion 25
+		targetSdkVersion SdkVersion
 		versionCode 1
 		versionName "1.0"
 

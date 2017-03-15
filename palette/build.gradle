@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 24
-	buildToolsVersion "23.0.3"
+	compileSdkVersion SdkVersion
+	buildToolsVersion "$BuildToolsVersion"
 
 	defaultConfig {
 		applicationId "com.xi_zz.palette"
 		minSdkVersion 10
-		targetSdkVersion 24
+		targetSdkVersion SdkVersion
 		versionCode 1
 		versionName "1.0"
 	}
@@ -21,7 +21,8 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:24.1.1'
-	compile 'com.android.support:palette-v7:24.1.1'
+	compile "com.android.support:appcompat-v7:$SupportLibraryVersion"
+	compile "com.android.support:palette-v7:$SupportLibraryVersion"
+
 	testCompile 'junit:junit:4.12'
 }
