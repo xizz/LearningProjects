@@ -1,0 +1,4 @@
+<resources>
+	<string name="app_name">Build Variant (Stage)</string>
+	<string name="product_flavor">stage</string>
+</resources>

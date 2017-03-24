@@ -14,20 +14,50 @@ android {
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 	}
+
+	signingConfigs {
+		prod {
+			storeFile file('../debug.keystore')
+			storePassword 'android'
+			keyAlias 'AndroidDebugKey' // case insensitive
+			keyPassword 'android'
+		}
+
+		stage {
+			storeFile file('../debug.keystore')
+			storePassword 'android'
+			keyAlias 'AndroidDebugKey' // case insensitive
+			keyPassword 'android'
+		}
+	}
+
 	buildTypes {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+		debug {
+			minifyEnabled false
+			applicationIdSuffix ".debug"
+		}
+	}
+
+	productFlavors {
+		stage {
+			applicationId "com.xi_zz.buildvariant.stage"
+			signingConfig signingConfigs.stage
+		}
+		prod {
+			applicationId "com.xi_zz.buildvariant"
+			signingConfig signingConfigs.prod
 		}
 	}
 }
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-		exclude group: 'com.android.support', module: 'support-annotations'
-	})
-	compile 'com.android.support:appcompat-v7:25.2.0'
+
+	compile "com.android.support:appcompat-v7:$SupportLibraryVersion"
 	compile 'com.android.support.constraint:constraint-layout:1.0.2'
 	testCompile 'junit:junit:4.12'
 }

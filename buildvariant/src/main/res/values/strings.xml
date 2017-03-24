@@ -1,3 +1,5 @@
 <resources>
 	<string name="app_name">Build Variant</string>
+	<string name="build_type">default</string>
+	<string name="product_flavor">default</string>
 </resources>
