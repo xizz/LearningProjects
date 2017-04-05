@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:181712420036:android:e29bcc1efd6709f4",
+        "mobilesdk_app_id": "1:181712420036:android:71b12ad507b306dd",
         "android_client_info": {
-          "package_name": "com.xi_zz.firebase"
+          "package_name": "com.xi_zz.firebase.debug"
         }
       },
       "oauth_client": [
