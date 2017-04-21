@@ -10,9 +10,9 @@
 
 	<Button
 		android:id="@+id/button7"
-		android:layout_width="0dp"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
+		android:layout_marginTop="8dp"
 		android:text="Button"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
@@ -21,37 +21,35 @@
 
 	<Button
 		android:id="@+id/button4"
-		android:layout_width="0dp"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
-		android:layout_marginTop="8dp"
 		android:text="Button"
 		app:layout_constraintLeft_toLeftOf="@+id/button7"
-		app:layout_constraintRight_toRightOf="@+id/button7"
 		app:layout_constraintTop_toBottomOf="@+id/button7"
+		app:layout_constraintRight_toLeftOf="@+id/button7"
+		android:layout_marginTop="8dp"
 		/>
 
 	<Button
 		android:id="@+id/button1"
-		android:layout_width="0dp"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
-		android:layout_marginTop="8dp"
 		android:text="Button"
-		app:layout_constraintLeft_toLeftOf="@+id/button4"
-		app:layout_constraintRight_toRightOf="@+id/button4"
+		app:layout_constraintRight_toRightOf="@+id/button7"
 		app:layout_constraintTop_toBottomOf="@+id/button4"
+		app:layout_constraintLeft_toRightOf="@+id/button7"
+		android:layout_marginTop="8dp"
+
 		/>
 
 	<Button
 		android:id="@+id/buttonc"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
 		android:layout_marginTop="8dp"
 		android:text="Button"
-		app:layout_constraintLeft_toLeftOf="@+id/button1"
-		app:layout_constraintRight_toRightOf="@+id/button1"
+		app:layout_constraintLeft_toLeftOf="@+id/button7"
+		app:layout_constraintRight_toRightOf="@+id/button7"
 		app:layout_constraintTop_toBottomOf="@+id/button1"
 		/>
 
@@ -59,11 +57,10 @@
 		android:id="@+id/button5"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
-		android:layout_marginTop="8dp"
 		android:text="Button"
-		app:layout_constraintLeft_toLeftOf="@+id/buttonc"
-		app:layout_constraintRight_toRightOf="@+id/buttonc"
+		app:layout_constraintLeft_toLeftOf="@+id/button4"
+		app:layout_constraintRight_toRightOf="@+id/button1"
 		app:layout_constraintTop_toBottomOf="@+id/buttonc"
+		android:layout_marginTop="8dp"
 		/>
 </android.support.constraint.ConstraintLayout>
