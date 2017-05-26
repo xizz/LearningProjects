@@ -7,20 +7,23 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class MainActivity extends AppCompatActivity {
 
 	private static final String API_URL = "https://api.github.com";
-	private static final RestAdapter REST_ADAPTER = new RestAdapter.Builder().setEndpoint(API_URL).build();
-	private static final GitHubService SERVICE = REST_ADAPTER.create(GitHubService.class);
+	private static final Retrofit RETROFIT = new Retrofit.Builder().baseUrl(API_URL).addConverterFactory(GsonConverterFactory.create()).build();
+	private static final GitHubService SERVICE = RETROFIT.create(GitHubService.class);
 
 	private TextView textView;
 	private EditText editText;
 	private ProgressBar progressBar;
+
 
 
 	@Override
@@ -36,18 +39,22 @@ public class MainActivity extends AppCompatActivity {
 		progressBar.setVisibility(View.VISIBLE);
 		String username = editText.getText().toString();
 
-		SERVICE.getFeed(username, new Callback<User>()
+		Call<User> call = SERVICE.getFeed(username);
+
+		call.enqueue(new Callback<User>()
 		{
 			@Override
-			public void success(User user, Response response) {
-				textView.setText(user.toString());
-				progressBar.setVisibility(View.INVISIBLE);
+			public void onResponse(Call<User> call, Response<User> response)
+			{
+				textView.setText(response.body().toString());
+				progressBar.setVisibility(View.GONE);
 			}
 
 			@Override
-			public void failure(RetrofitError error) {
-				textView.setText(error.getMessage());
-				progressBar.setVisibility(View.INVISIBLE);
+			public void onFailure(Call<User> call, Throwable t)
+			{
+				textView.setText("Error");
+				progressBar.setVisibility(View.GONE);
 			}
 		});
 	}
