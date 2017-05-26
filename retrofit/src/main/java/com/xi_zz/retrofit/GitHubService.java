@@ -5,7 +5,8 @@ import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
 
-public interface GitHubApi {
+public interface GitHubService
+{
 	@GET("/users/{user}")
 	void getFeed(@Path("user") String user, Callback<User> response);
 }

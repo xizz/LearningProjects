@@ -14,40 +14,40 @@ import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-	private String API_URL = "https://api.github.com";
+	private static final String API_URL = "https://api.github.com";
+	private static final RestAdapter REST_ADAPTER = new RestAdapter.Builder().setEndpoint(API_URL).build();
+	private static final GitHubService SERVICE = REST_ADAPTER.create(GitHubService.class);
 
-	private TextView mTextView;
-	private EditText mEditText;
-	private ProgressBar mProgressBar;
+	private TextView textView;
+	private EditText editText;
+	private ProgressBar progressBar;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		mEditText = (EditText) findViewById(R.id.text_username);
-		mTextView = (TextView) findViewById(R.id.text_user_info);
-		mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		editText = (EditText) findViewById(R.id.text_username);
+		textView = (TextView) findViewById(R.id.text_user_info);
+		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 	}
 
 	public void getUser(View view) {
-		String username = mEditText.getText().toString();
-		mProgressBar.setVisibility(View.VISIBLE);
+		progressBar.setVisibility(View.VISIBLE);
+		String username = editText.getText().toString();
 
-		RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(API_URL).build();
-		GitHubApi gitHubApi = restAdapter.create(GitHubApi.class);
-		gitHubApi.getFeed(username, new Callback<User>() {
+		SERVICE.getFeed(username, new Callback<User>()
+		{
 			@Override
 			public void success(User user, Response response) {
-				mTextView.setText("Github Name :" + user.getName() + "\nWebsite :" + user.getBlog()
-						+ "\nCompany Name :" + user.getCompany());
-
-				mProgressBar.setVisibility(View.INVISIBLE);
+				textView.setText(user.toString());
+				progressBar.setVisibility(View.INVISIBLE);
 			}
 
 			@Override
 			public void failure(RetrofitError error) {
-				mTextView.setText(error.getMessage());
-				mProgressBar.setVisibility(View.INVISIBLE);
+				textView.setText(error.getMessage());
+				progressBar.setVisibility(View.INVISIBLE);
 			}
 		});
 	}

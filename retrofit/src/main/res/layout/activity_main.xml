@@ -41,6 +41,7 @@
 			android:layout_height="0dp"
 			android:layout_marginTop="40dp"
 			android:layout_weight="1"
+			android:freezesText="true"
 			tools:text="user name: xizz"
 			/>
 	</LinearLayout>
