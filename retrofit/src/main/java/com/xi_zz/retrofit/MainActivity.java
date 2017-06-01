@@ -7,6 +7,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,46 +19,70 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
+	private static final GitHubService SERVICE;
 
-	private static final String API_URL = "https://api.github.com";
-	private static final Retrofit RETROFIT = new Retrofit.Builder().baseUrl(API_URL).addConverterFactory(GsonConverterFactory.create()).build();
-	private static final GitHubService SERVICE = RETROFIT.create(GitHubService.class);
+	static
+	{
+		OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+		httpClientBuilder.addInterceptor(new Interceptor()
+		{
+			@Override
+			public okhttp3.Response intercept(Chain chain) throws IOException
+			{
+				Request.Builder requestBuilder = chain.request().newBuilder()
+						.header("Authorization", "Basic [your GitHub personal access token]");
+				return chain.proceed(requestBuilder.build());
+			}
+		});
+		Retrofit retrofit = new Retrofit
+				.Builder()
+				.baseUrl("https://api.github.com")
+				.addConverterFactory(GsonConverterFactory.create())
+				.client(httpClientBuilder.build())
+				.build();
 
-	private TextView textView;
-	private EditText editText;
+		SERVICE = retrofit.create(GitHubService.class);
+	}
+
+	private EditText usernameText;
+	private TextView resultText;
 	private ProgressBar progressBar;
 
-
-
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		editText = (EditText) findViewById(R.id.text_username);
-		textView = (TextView) findViewById(R.id.text_user_info);
+		usernameText = (EditText) findViewById(R.id.text_username);
+		resultText = (TextView) findViewById(R.id.text_user_info);
 		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 	}
 
-	public void getUser(View view) {
+	public void getUser(View view)
+	{
 		progressBar.setVisibility(View.VISIBLE);
-		String username = editText.getText().toString();
+		String queryName = usernameText.getText().toString();
 
-		Call<User> call = SERVICE.getFeed(username);
+		Call<User> call = SERVICE.getUserInfo(queryName);
 
 		call.enqueue(new Callback<User>()
 		{
 			@Override
 			public void onResponse(Call<User> call, Response<User> response)
 			{
-				textView.setText(response.body().toString());
+				if (response.body() != null)
+					resultText.setText(response.body().toString());
+				else
+					resultText.setText(response.message());
 				progressBar.setVisibility(View.GONE);
 			}
 
 			@Override
 			public void onFailure(Call<User> call, Throwable t)
 			{
-				textView.setText("Error");
+				resultText.setText("Error");
 				progressBar.setVisibility(View.GONE);
 			}
 		});

@@ -21,9 +21,8 @@
 			android:id="@+id/text_username"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:ems="10"
+			android:hint="username to query"
 			android:inputType="textPersonName"
-			android:text=""
 			/>
 
 		<Button
@@ -39,10 +38,9 @@
 			android:id="@+id/text_user_info"
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
-			android:layout_marginTop="40dp"
 			android:layout_weight="1"
 			android:freezesText="true"
-			tools:text="user name: xizz"
+			tools:text="result"
 			/>
 	</LinearLayout>
 
