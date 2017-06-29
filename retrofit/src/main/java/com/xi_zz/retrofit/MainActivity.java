@@ -12,6 +12,7 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,17 +26,23 @@ public class MainActivity extends AppCompatActivity
 
 	static
 	{
+		HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+		// set your desired log level
+		logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+
 		OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
-		httpClientBuilder.addInterceptor(new Interceptor()
-		{
-			@Override
-			public okhttp3.Response intercept(Chain chain) throws IOException
-			{
-				Request.Builder requestBuilder = chain.request().newBuilder()
-						.header("Authorization", "Basic [your GitHub personal access token]");
-				return chain.proceed(requestBuilder.build());
-			}
-		});
+		httpClientBuilder
+				.addInterceptor(new Interceptor()
+				{
+					@Override
+					public okhttp3.Response intercept(Chain chain) throws IOException
+					{
+						Request.Builder requestBuilder = chain.request().newBuilder()
+								.header("Authorization", "Basic [your GitHub personal access token]");
+						return chain.proceed(requestBuilder.build());
+					}
+				})
+				.addInterceptor(logging);
 		Retrofit retrofit = new Retrofit
 				.Builder()
 				.baseUrl("https://api.github.com")
@@ -75,7 +82,16 @@ public class MainActivity extends AppCompatActivity
 				if (response.body() != null)
 					resultText.setText(response.body().toString());
 				else
-					resultText.setText(response.message());
+				{
+					try
+					{
+						resultText.setText(response.code() + "\n" + response.errorBody().string() + "\n" + response.message());
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();
+					}
+				}
 				progressBar.setVisibility(View.GONE);
 			}
 
