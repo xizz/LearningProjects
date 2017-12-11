@@ -25,8 +25,7 @@ task clean(type: Delete) {
 }
 
 ext {
-	SupportLibraryVersion = '25.3.1'
-	GooglePlayVersion = '10.2.0'
-	BuildToolsVersion = '25.0.2'
-	SdkVersion = 25
+	SupportLibraryVersion = '26.+'
+	GooglePlayVersion = '11.+'
+	SdkVersion = 26
 }

@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion SdkVersion
-    buildToolsVersion BuildToolsVersion
-
 
     defaultConfig {
         applicationId "com.xi_zz.learningprojects"

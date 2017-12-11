@@ -2,11 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
 	compileSdkVersion SdkVersion
-	buildToolsVersion BuildToolsVersion
 
 	defaultConfig {
 		applicationId "com.xi_zz.palette"
-		minSdkVersion 10
+		minSdkVersion 16
 		targetSdkVersion SdkVersion
 		versionCode 1
 		versionName "1.0"
