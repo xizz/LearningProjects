@@ -42,14 +42,18 @@ android {
 		}
 	}
 
+	flavorDimensions "default"
+
 	productFlavors {
 		stage {
 			applicationId "com.xi_zz.buildvariant.stage"
 			signingConfig signingConfigs.stage
+			dimension "default"
 		}
 		prod {
 			applicationId "com.xi_zz.buildvariant"
 			signingConfig signingConfigs.prod
+			dimension "default"
 		}
 	}
 }
